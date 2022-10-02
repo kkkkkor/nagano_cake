@@ -1,0 +1,47 @@
+<h4>注文履歴の詳細</h4>
+<%= form_with model: @order_product, url: _path(@order_product.id), method: patch do |f| %>
+<h2>購入者</h2>
+<p><%= @order_product.name %></p>
+
+<h2>注文日</h2>
+<p><%= @order_product.introduction %></p>
+<h2>配送先</h2>
+<p><%= @order_product.genre_id %></p>
+<h2>支払方法<br>(税抜価格)</h2>
+<p><%= @order_product.price %></p>
+<h2>注文ステータス</h2>
+<%= f.select :is_active, ['入金待ち', '入金確認', '制作中', '発送準備中', '発送済み'], {include_blank: '選択ボックス'},
+class: 'sample' %>
+<%= f.submit '更新' %>
+
+<% end %>
+
+        <thead>
+        <div class="form-group">
+        <th>商品名</th>
+        </div>
+        <div class="form-group">
+        <th>単価（税込）</th>
+        </div>
+        <div class="form-group">
+        <th>数量</th>
+        </div>
+        <div class="form-group">
+        <th>小計</th>
+        </div>
+        <div class="form-group">
+        <th>製作ステータス</th>
+        </div>
+        </thead>
+        <tbody>
+         <% @order_products.each do |order_product| %>
+
+            <tr>
+          <td><%= order_product.name %></td>
+          <td><%= order_product.tax_included_price %></td>
+          <td><%= order_product.quantity %></td>
+          <td><%= order_product. %></td>
+          <td><%= order_product.making_status %></td>
+          </tr>
+         </tbody>
+         <% end %>

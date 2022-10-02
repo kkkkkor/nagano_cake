@@ -1,0 +1,43 @@
+ <div class="col-md-8 offset-md-1">
+  <h2>商品詳細</h2>
+   <table class="table table-hover table-inverse">
+    <thead>
+    <tr>
+      <div class="form-group">
+        <th>商品名</th>
+      </div>
+      <div class="form-group">
+        <th>商品説明</th>
+      </div>
+      <div class="form-group">
+        <th>ジャンル</th>
+      </div>
+      <div class="form-group">
+        <th>税込価格<br>(税抜価格)</th>
+      </div>
+      <div class="form-group">
+        <th>販売ステータス</th>
+      </div>
+      </tr>
+  </thead>
+    <tbody>
+       <% @item.each do |book| %>
+          <tr>
+            <td>
+              <%= link_to user_path(@user) do %>
+              <%= image_tag @user.get_image(80,80) %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to book.title, book_path(book)%>
+            </td>
+            <td>
+              <%= book.body %>
+            </td>
+          </tr>
+       <% end %>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>

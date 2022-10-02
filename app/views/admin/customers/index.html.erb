@@ -1,0 +1,28 @@
+<h4>会員一覧</h4>
+<div class="form-group">
+                <th>会員ID</th>
+              </div>
+              <div class="form-group">
+                <th>氏名</th>
+              </div>
+              <div class="form-group">
+                <th colspan="3"></th>
+              </div>
+              <div class="form-group">
+                <th>メールアドレス</th>
+              </div>
+              <div class="form-group">
+                <th>ステータス</th>
+              </div>
+            </tr>
+          </thead>
+              <tbody>
+               <% @customers.each do |customer| %>
+
+              <tr>
+                <td><%= customer.id %></td>
+                <td><%= customer.last_name %><%= customer.first_name %></td>
+                <td><%= customer.email %></td>
+                <td><%= customer.is_deleted %></td>
+              </tr>
+               <% end %>

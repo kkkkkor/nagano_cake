@@ -1,0 +1,2 @@
+module Piblic::ShippingAddressesHelper
+end

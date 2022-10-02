@@ -1,0 +1,47 @@
+
+<h1>商品一覧</h1>
+
+<%= @items.each do |item| %>
+
+  <p>商品名</p>
+  <span><%= item.name %></span>
+
+  <p>商品説明</p>
+  <span><%= item.introduction %></span>
+
+  <p>ジャンル</p>
+  <span><%= item.genre_id %></span>
+
+
+  <p>税抜価格</p>
+  <span><%= item.price %></span>
+
+  <P>商品画像</P>
+
+  <P>販売ステータス</P>
+  <span><%= item.is_active %></span>
+
+<% end %>
+
+<h1>商品新規登録</h1>
+
+<%= form_with model: Item.new, admin_items_path do |f| %>
+
+  <h4>商品名</h4>
+  <%= f.text_field :name %>
+
+  <h4>商品説明</h4>
+  <%= f.text_area :introduction %>
+  <h4>ジャンル</h4>
+  <%= f.text_field :genre_id %>
+  <h4>税抜価格</h4>
+  <%= f.text_field :price %>
+  <h4>商品画像</h4>
+  <%= f.file_field :image %>
+  <h4>販売ステータス</h4>
+  <%= f.text_field :is_active %>
+
+
+  <%= f.submit '投稿' %>
+<% end %>
+
