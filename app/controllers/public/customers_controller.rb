@@ -7,6 +7,10 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
   end
 
+  def index
+    @customers = current_customer
+  end
+
   def update
     @customer = current_customer
     @customer.update

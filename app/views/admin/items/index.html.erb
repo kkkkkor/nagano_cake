@@ -1,28 +1,55 @@
-<h1>商品一覧</h1>
-<div class="form-group">
-    <th>商品ID</th>
-    </div>
-    <div class="form-group">
-  　<th>商品名</th>
-  　</div>
-    <div class="form-group">
-    <th>税抜価格</th>
-    </div>
-    <div class="form-group">
-    <th>ジャンル</th>
-    </div>
-    <div class="form-group">
-    <th>ステータス</th>
-    </div>
-   </tr>
-  </thead>
-<% @items.each do |item| %>
+<div class="col-md-8 offset-md-1">
+       <h2>商品一覧</h2>
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+                <th></th>
+              <div class="form-group">
+                <th>商品ID</th>
+              </div>
+              <div class="form-group">
+                <th>商品名</th>
+              </div>
+              <div class="form-group">
+                <th>税抜価格</th>
+              </div>
+              <div class="form-group">
+                <th>ジャンル</th>
+              </div>
+              <div class="form-group">
+                <th colspan="3"></th>
+              </div>
+              <div class="form-group">
+                <th>ステータス</th>
+              </div>
+            </tr>
+          </thead>
+<tbody>
+  <% @items.each do |item| %>
+    <tr>
+    <td>
+    </td>
+    <td>
+    <%= item.id %>
+    </td>
+    <td>
+    <%= link_to item.name, admin_items_path(item) %>
+    </td>
 
-  <td><%= item.id %></td>
-  <td> <%= link_to item.name, admin_items_path(item) %></td>
-  <td><%= item.price %></td>
-  <td><%= item.genre_id %></td>
-  <td><%= item.is_active %></td>
+    <td>
+    <%= item.price %>
+    </td>
+    <td>
+    <%= item.genre_id %>
+    </td>
+    <div class="form-group">
+                <th colspan="3"></th>
+              </div>
+    <td>
+    <%= item.is_active %>
+    </td>
+    </tr>
+    <% end %>
+  </tbody>
 
-<% end %>
 <%= paginate @items %>

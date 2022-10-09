@@ -16,61 +16,37 @@ Rails.application.routes.draw do
   # devise_for :customers
   namespace :admin do
     get 'order_products/updete'
-  end
-  namespace :admin do
     get 'orders/show'
-  end
-  namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
-    # get 'customers/index'
-    # get 'customers/show'
-    # get 'customers/edit'
-    # get 'customers/update'
-  end
-  namespace :admin do
     get 'items/new'
      resources :items
-  end
-  namespace :admin do
     root to: 'homes#top'
     get 'homes/top'
     resources :genres, only: [:index, :create, :edit, :update]
   end
 
+  scope module: :public do
+    resources :shipping_addresses
 
-  namespace :piblic do
-    get 'shipping_addresses/index'
-    get 'shipping_addresses/edit'
-    get 'shipping_addresses/create'
-    get 'shipping_addresses/update'
-    get 'shipping_addresses/destroy'
-  end
-  namespace :public do
-    get 'orders/new'
-    get 'orders/confirm'
-    get 'orders/thanks'
-    get 'orders/create'
-    get 'orders/index'
-    get 'orders/show'
-  end
-  namespace :public do
-    get 'cart_items/index'
-    get 'cart_items/update'
-    get 'cart_items/destroy'
-    get 'cart_items/all_destroy'
-    get 'cart_items/create'
-  end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-    get 'customers/quit'
-    get 'customers/out'
+    resources :items, only: [:index, :show]
+
+    resources :customers
   end
 
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
+  scope module: :public do
+  resources :cart_items do
+    collection do
+    delete 'destroy_all'
+    end
+  end
+  end
+  scope module: :public do
+  resources :orders do
+    collection do
+    post 'confirm'
+    get 'thanks'
+    end
+  end
   end
   # namespace :public do
   #   root to: 'homes#top'

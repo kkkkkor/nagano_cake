@@ -1,2 +1,65 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<h4>注文履歴の詳細</h4>
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <td>注文日</td>
+      <td><%= order.created_at %></td>
+    </tr>
+      <tr>
+        <td>配送先</td>
+        <td><%= order.shipping_postal_code %><br>
+                <%= order.shipping_address %><br>
+                <%= order.shipping_name %></td>
+      </tr>
+        <tr>
+          <td>支払方法</td>
+          <td><%= order.method_of_payment %></td>
+        </tr>
+          <tr>
+            <td>ステータス</td>
+            <td><%= order.status %></td>
+          </tr>
+  </tbody>
+</table>
+<h4>請求情報</h4>
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <td>商品合計</td>
+      <td><%= @total %></td>
+    </tr>
+      <tr>
+        <td>配送料</td>
+        <td><%= order.postage %></td>
+      </tr>
+        <tr>
+          <td><strong>ご請求金額</strong></td>
+          <td><%= order.billing_amount %></td>
+        </tr>
+  </tbody>
+</table>
+<h4>注文内容</h4>
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <td>商品</td>
+      <td>単価（税込）</td>
+      <td>個数</td>
+      <td>小計</td>
+    </tr>
+    <tr>
+      <td><%= order.cart_item.name %></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+

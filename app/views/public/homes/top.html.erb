@@ -1,38 +1,33 @@
-<div class="container">
-  <div class="row">
-    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
 
-     <div class = "container">
+      <p class="text-center">
+      ようこそ、ながのCAKEへ！</br>
+      このサイトは、ケーキ販売のECサイトになります。</br>
+      会員でない方も商品の閲覧はできますが、</br>
+      購入には会員登録が必要になります。</br>
+      </p>
 
-      <h1></h1>
-
-      <P>ようこそ、ながのCAKEへ！<br>
-      このサイトは、ケーキ販売のECサイトになります。<br>
-      会員でない方も商品の閲覧はできますが、<br>
-      購入には会員登録が必要になります。</P>
-
-      <h2>新着商品</h2>
-
-      <div class="btn-wrapper col-10 mx-auto">
-
-          <div class="row">
             <h1>新着商品</h1>
+      <div class="container">
+      <div class="row">
+        <div class="col-4">
+
+
+
             <% @items.each do |item| %>
             <% if item.image.attached? %>
-            <%= image_tag item.image, size: "300x300" %>
+            <%= image_tag item.image, size: "150x100" %>
           <% else %>
-            <%= image_tag 'no_image', size: "300x300" %>
+            <%= image_tag 'no_image', size: "150x100" %>
           <% end %>
             <P><%= item.name %></P>
-            <P><%= item.price %></P>
+            <P>￥<%= item.price %></P>
           <% end %>
-          <%= link_to '全ての商品を見る＞',public_items_index_path %>
-          </div>
-          <div class="row">
-          </div>
+           </div>
+           </div>
+          <%= link_to '全ての商品を見る＞',items_path %>
+
+
+
       </div>
      </div>
-    </div>
-  </div>
-</div>
 <%= paginate @items %>

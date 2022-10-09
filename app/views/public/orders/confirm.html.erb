@@ -1,2 +1,23 @@
-<h1>Public::Orders#confirm</h1>
-<p>Find me in app/views/public/orders/confirm.html.erb</p>
+<h4>注文情報確認</h4>
+<% @cart_items.each do |cart| %>
+<% @total = @total + cart.subtotal %>
+  <%= cart.item.name %>
+  <%= cart.item.price %>
+  <%= cart.amount %>
+  <%= cart.item.price*cart.amount %>
+<% end %>
+<p>ご請求金額</p>
+<%= @total %>
+<p>支払い方法</p>
+<%= @order.method_of_payment_i18n %>
+<p>お届け先</p>
+<%= @order.shipping_postal_code %>
+<%= @order.shipping_address %>
+<%= @order.shipping_name %>
+
+<%= form_with model: @order, url: orders_path, method: :patch, local: true do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :shipping_address %>
+  <%= f.hidden_field :total_price, value: @total %>
+  <%= f.submit "注文を確定する" %>
+<% end %>
