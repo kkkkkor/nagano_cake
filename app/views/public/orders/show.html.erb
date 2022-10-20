@@ -3,22 +3,23 @@
   <tbody>
     <tr>
       <td>注文日</td>
-      <td><%= order.created_at %></td>
+      <td><%= @order.created_at %></td>
     </tr>
       <tr>
         <td>配送先</td>
-        <td><%= order.shipping_postal_code %><br>
-                <%= order.shipping_address %><br>
-                <%= order.shipping_name %></td>
+        <td><%= @order.shipping_postal_code %><br>
+                <%= @order.shipping_address %><br>
+                <%= @order.shipping_name %></td>
       </tr>
         <tr>
           <td>支払方法</td>
-          <td><%= order.method_of_payment %></td>
+          <td><%= @order.method_of_payment_i18n %></td>
         </tr>
           <tr>
             <td>ステータス</td>
-            <td><%= order.status %></td>
+            <td><%= @order.status_i18n %></td>
           </tr>
+
   </tbody>
 </table>
 <h4>請求情報</h4>
@@ -26,15 +27,15 @@
   <tbody>
     <tr>
       <td>商品合計</td>
-      <td><%= @total %></td>
+      <td><%= @order.billing_amount %></td>
     </tr>
       <tr>
         <td>配送料</td>
-        <td><%= order.postage %></td>
+        <td><%= @order.postage %></td>
       </tr>
         <tr>
           <td><strong>ご請求金額</strong></td>
-          <td><%= order.billing_amount %></td>
+          <td><%= @order.billing_amount + @order.postage %></td>
         </tr>
   </tbody>
 </table>
@@ -47,18 +48,14 @@
       <td>個数</td>
       <td>小計</td>
     </tr>
+    <% @order_products.each do |order_product| %>
     <tr>
-      <td><%= order.cart_item.name %></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td><%= order_product.item.name %></td>
+      <td><%= order_product.tax_included_price %></td>
+      <td><%= order_product.quantity %></td>
+      <td><%= order_product.tax_included_price*order_product.quantity %></td>
     </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
+   <% end %>
   </tbody>
 </table>
 

@@ -17,7 +17,10 @@ class Admin::SessionsController < Devise::SessionsController
     end
     # super
   end
-
+  # def after_sign_out_path_for(resource)
+  #   flash[:notice] = "ログアウトしました"
+  #   admin_session_path
+  # end
   # DELETE /resource/sign_out
   # def destroy
   #   super

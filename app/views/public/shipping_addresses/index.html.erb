@@ -1,18 +1,22 @@
 <h3>配送先登録／一覧</h3>
+<table class="table table-hover table-inverse">
+<thead>
 <%= form_with model: @shipping_address do |f| %>
-  <h4>郵便番号（ハイフンなし）</h4>
-  <%= f.text_field :postal_code %>
+  <tr><th>郵便番号（ハイフンなし）
+  <%= f.text_field :postal_code %></th></tr>
 
-  <h4>住所</h4>
-  <%= f.text_area :address %>
-  <h4>宛名</h4>
-  <%= f.text_field :name %>
+  <tr><th>住所
+  <%= f.text_area :address %></th></tr>
+  <tr><th>宛名
+  <%= f.text_field :name %></th></tr>
 
-  <%= f.submit '新規登録' %>
+  <tr><tr><td><%= f.submit '新規登録' %></td></tr>
   <% end %>
+  </tr>
+  </thead>
+  </table>
 
 <table class="table table-bordered">
-<%= @shipping_addresses.each do |shipping_address| %>
   <tbody>
   <tr>
   <td>郵便番号</td>
@@ -20,6 +24,7 @@
   <td>宛名</td>
   <td></td>
   </tr>
+<% @shipping_addresses.each do |shipping_address| %>
 
   <tr>
   <td><%= shipping_address.postal_code %></td>

@@ -13,8 +13,8 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    @customer.update
-    redirect_to public_customers_show_path
+    @customer.update(customer_params)
+    redirect_to customers_path
   end
 
   def quit
@@ -23,7 +23,7 @@ class Public::CustomersController < ApplicationController
 
   def out
     @customer = current_customer
-    @customer.update(is_valid: false)
+    @customer.update(is_deleted: true)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path

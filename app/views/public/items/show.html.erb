@@ -2,11 +2,7 @@
    <table class="table table-hover table-inverse">
     <thead>
     <tr>
-      <% if @item.image.attached? %>
-        <%= image_tag @item.image, size: "300x300" %>
-      <% else %>
-        <%= image_tag 'no_image', size: "300x300" %>
-      <% end %>
+     <%= image_tag @item.get_image(300,300) %>
         <th><%= @item.name %></th>
         <th><%= @item.introduction %></th>
         <th><%= @item.price %></th>

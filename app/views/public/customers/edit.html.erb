@@ -2,8 +2,7 @@
 <div class="container">
   <div class="row">
 
-
-      <%= form_for(@customer, url: {controller: 'customers', action: 'update' }) do |f| %>
+      <%= form_with model: @customer, url: customers_path, method: :patch do |f| %>
       <div class="col-auto">
       <th>氏名</th>
   <div class="field">
@@ -45,6 +44,7 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
-    <%= f.submit "編集内容を保存" %>
+    <%= f.submit "編集内容を保存" %><%= link_to '退会', quit_customers_path, method: :get %></li>
 
  <% end %>
+

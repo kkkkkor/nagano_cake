@@ -1,5 +1,5 @@
 <h3>マイページ</h3>
-<strong>登録情報</strong>
+<strong>登録情報</strong> <%= link_to "編集する", edit_customers_path %>
 <table class="table table-bordered">
   <tbody>
 
@@ -8,7 +8,7 @@
 
     <tr>
       <td>氏名</td>
-      <td><%= @customer.first_name %><%= @customer.last_name%></td>
+      <td><%= @customer.last_name%><%= @customer.first_name %></td>
     </tr>
       <td>カナ</td>
       <td><%= @customer.last_name_kana %><%= @customer.first_name_kana%></td>
@@ -36,5 +36,5 @@
   </tbody>
 </table>
 
-<h2>配送先</h2><%= link_to '一覧を見る', piblic_shipping_addresses_index_path %>
-<h2>注文履歴</h2><%= link_to '一覧を見る', public_orders_index_path %>
+<h2>配送先</h2><%= link_to '一覧を見る', shipping_addresses_path %>
+<h2>注文履歴</h2><%= link_to '一覧を見る', orders_path %>

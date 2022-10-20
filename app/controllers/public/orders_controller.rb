@@ -14,14 +14,15 @@ class Public::OrdersController < ApplicationController
       @order = current_customer.orders.new(order_params)
     if @order.save
       cart_items.each do |cart|
-      order_item = OrderItem.new
+      order_item = OrderProduct.new
       order_item.item_id = cart.item_id
       order_item.order_id = @order.id
-      order_item.order_quantity = cart.quantity
-      order_item.order_price = cart.item.price
+      order_item.quantity = cart.amount
+      order_item.tax_included_price = (cart.item.price*1.1).floor
+      order_item.making_status = 0
       order_item.save
     end
-    redirect_to path confirm_orders_path
+    redirect_to thanks_orders_path
       cart_items.destroy_all
     else
       @order = Order.new(order_params)
@@ -30,8 +31,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+
     @total = 0
     @order = Order.new(order_params)
+    @order.postage = 800
     @order.method_of_payment = params[:order][:payment_method]
     if params[:order][:select_address] == "0"
     @order.shipping_address = current_customer.address
@@ -46,7 +49,9 @@ class Public::OrdersController < ApplicationController
     @order.shipping_name = Order.new(order_params).shipping_name
     @order.shipping_postal_code = Order.new(order_params).shipping_postal_code
     end
-    @cart_items = current_customer.cart_items.all
+    if @cart_items = current_customer.cart_items.all
+
+    end
     # @address = Address.find(params[:order][:address_id])
     # @order.postal_code = @address.postal_code
     # @order.address = @address.address
@@ -54,11 +59,18 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders
+    # byebug
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_products = @order.order_products
   end
   def order_params
-   params.require(:order).permit(:shipping_postal_code, :shipping_address,:shipping_name, :method_of_payment, :postage, :billing_amount, :status)
+   params.require(:order).permit(:shipping_postal_code, :shipping_address,:shipping_name, :method_of_payment, :postage, :billing_amount)
+  end
+  def order_product_params
+    params.require(:order_product).permit(:name)
   end
 end

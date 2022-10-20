@@ -5,7 +5,7 @@
     <div class="col-auto">
       <th>郵便番号（ハイフンなし）</th>
       <div class="field">
-    <%= f.text_field :shipping_postal_code, autocomplete: "shipping_postal_code" %>
+    <%= f.text_field :postal_code, autocomplete: "shipping_postal_code" %>
     </td>
  </tr>
  <tr>
@@ -13,7 +13,7 @@
     <div class="col-auto">
       <th>住所</th>
       <div class="field">
-    <%= f.text_field :shipping_address, autocomplete: "shipping_address" %>
+    <%= f.text_field :address, autocomplete: "shipping_address" %>
     </td>
  </tr>
  <tr>
@@ -21,7 +21,7 @@
     <div class="col-auto">
       <th>宛名</th>
       <div class="field">
-    <%= f.text_field :shipping_name, autocomplete: "shipping_name" %>
+    <%= f.text_field :name, autocomplete: "shipping_name" %>
     <%= f.submit "編集内容を保存" %>
     </td>
  </tr>

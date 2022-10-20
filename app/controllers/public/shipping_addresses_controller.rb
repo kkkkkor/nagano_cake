@@ -7,7 +7,7 @@ end
 
 
 def edit
-@shipping_address = ShippingAddress.update
+@shipping_address = ShippingAddress.find(params[:id])
 end
 
 def create
@@ -22,6 +22,10 @@ def create
 end
 
 def update
+ shipping_address = ShippingAddress.find(params[:id])
+ if shipping_address.update(shipping_address_params)
+ redirect_to shipping_addresses_path
+ end
 end
 
 private
@@ -31,5 +35,3 @@ private
 
 
 end
-
-

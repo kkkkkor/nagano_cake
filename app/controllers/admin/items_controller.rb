@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
   def index
     # @item = Item.find(params[:id])
-    @items = Item.page(params[:page]).per(5)
+    @items = Item.page(params[:page]).per(3)
     @item = Item.all
     @genres = Genre.all
 

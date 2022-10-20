@@ -21,4 +21,9 @@ class Public::HomesController < ApplicationController
   def item_params
    params.require(:item).permit(:name, :introduction,:genre_id, :price, :image, :is_active)
   end
+
+
+  def order_product_params
+    params.require(:order_product).permit(:name)
+  end
 end

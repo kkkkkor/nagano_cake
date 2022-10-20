@@ -3,10 +3,7 @@ Rails.application.routes.draw do
 
   # devise_for :customers
   # devise_for :admins
-  devise_for :customers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
+
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
@@ -16,7 +13,7 @@ Rails.application.routes.draw do
   # devise_for :customers
   namespace :admin do
     get 'order_products/updete'
-    get 'orders/show'
+    resources :orders, only: [:show]
     resources :customers, only: [:index, :show, :edit, :update]
     get 'items/new'
      resources :items
@@ -30,9 +27,17 @@ Rails.application.routes.draw do
 
     resources :items, only: [:index, :show]
 
-    resources :customers
+    resource :customers, except:[:create] do
+    collection do
+    get 'quit'
+    patch 'out'
+    end
+    end
   end
-
+    devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+    sessions: 'public/sessions'
+}
   scope module: :public do
   resources :cart_items do
     collection do
@@ -48,11 +53,7 @@ Rails.application.routes.draw do
     end
   end
   end
-  # namespace :public do
-  #   root to: 'homes#top'
-  #   get 'homes/top'
-  #   get 'homes/about'
-  # end
+
    scope module: :public do
     root to: 'homes#top'
     # get 'homes/top'
